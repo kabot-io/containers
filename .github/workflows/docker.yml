@@ -65,9 +65,13 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       - 
         name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/bake-action@v4
         with:
           push: true
-          # tags: ghcr.io/kabot-io/test:latest
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          targets: ${{ matrix.target }}
+          files: "kabot-containers.hcl"
+        # with:
+        #   push: true
+        #   # tags: ghcr.io/kabot-io/test:latest
+        #   tags: ${{ steps.meta.outputs.tags }}
+        #   labels: ${{ steps.meta.outputs.labels }}
