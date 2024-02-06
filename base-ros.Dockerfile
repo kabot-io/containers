@@ -1,5 +1,5 @@
 FROM ubuntu:22.04 as base
-LABEL org.opencontainers.image.source="https://github.com/kabot-io/containers"
+LABEL org.opencontainers.image.source https://github.com/kabot-io/containers
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG ROS_DISTRO

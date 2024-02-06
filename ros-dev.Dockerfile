@@ -1,5 +1,5 @@
 FROM base-ros
-LABEL org.opencontainers.image.source="https://github.com/kabot-io/containers"
+LABEL org.opencontainers.image.source https://github.com/kabot-io/containers
 
 ARG DEBIAN_FRONTEND=noninteractive
 
