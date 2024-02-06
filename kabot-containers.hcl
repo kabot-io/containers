@@ -8,7 +8,10 @@ variable "TAG" {
 
 variable "common_args"  {
     default = {
-        ROS_DISTRO = "humble"    
+        ROS_DISTRO = "humble"
+        HOST_UID = "1000"
+        HOST_GID = "1000"
+        USERNAME = "ros"
     }
 }
 

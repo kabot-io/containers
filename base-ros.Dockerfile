@@ -26,3 +26,18 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get update && apt-get install -y \
         ros-${ROS_DISTRO}-ros-base \
     && rm -rf /var/lib/apt/lists/*
+
+ARG HOST_UID
+ARG HOST_GID
+ARG USERNAME
+
+RUN groupadd --gid $HOST_GID $USERNAME \
+    && useradd -s /bin/bash --uid ${HOST_UID} --gid ${HOST_GID} -m $USERNAME \
+    && apt-get update \
+    && apt-get install -y \
+        sudo \
+    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
+    && chmod 0440 /etc/sudoers.d/$USERNAME \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN echo "source /opt/ros/humble/setup.bash" >> /home/$USERNAME/.bashrc
