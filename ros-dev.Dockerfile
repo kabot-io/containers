@@ -1,4 +1,4 @@
-FROM base-ros
+FROM ros-base
 LABEL org.opencontainers.image.source https://github.com/kabot-io/containers
 
 ARG DEBIAN_FRONTEND=noninteractive

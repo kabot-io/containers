@@ -1,5 +1,5 @@
 group "default" {
-    targets = ["base-ros", "ros-dev", "ros-desktop"]
+    targets = ["ros-base", "ros-dev", "ros-desktop"]
 }
 
 variable "TAG" {
@@ -15,11 +15,11 @@ variable "common_args"  {
     }
 }
 
-target "base-ros" {
-    dockerfile = "base-ros.Dockerfile"
-    tags = ["ghcr.io/kabot-io/base-ros:${TAG}"]
+target "ros-base" {
+    dockerfile = "ros-base.Dockerfile"
+    tags = ["ghcr.io/kabot-io/ros-base:${TAG}"]
 
-    cache-from = ["type=registry,ref=ghcr.io/kabot-io/base-ros:${TAG}"]
+    cache-from = ["type=registry,ref=ghcr.io/kabot-io/ros-base:${TAG}"]
     cache-to = ["type=inline"]
 
     args = common_args
@@ -36,7 +36,7 @@ target "ros-dev" {
     args = common_args
     platforms = ["linux/amd64", "linux/arm64"]
     contexts = {
-        base-ros = "target:base-ros"
+        ros-base = "target:ros-base"
     }
 }
 
