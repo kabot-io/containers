@@ -59,8 +59,8 @@ target "ros-platformio" {
     tags = ["ghcr.io/kabot-io/ros-platformio:${TAG}"]
     args = common_args
 
-    // cache-from = ["type=registry,ref=ghcr.io/kabot-io/ros-platformio:${TAG}"]
-    // cache-to = ["type=inline"]
+    cache-from = ["type=registry,ref=ghcr.io/kabot-io/ros-platformio:${TAG}"]
+    cache-to = ["type=inline"]
 
     platforms = ["linux/amd64"]
     contexts = {
