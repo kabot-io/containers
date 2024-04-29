@@ -5,6 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
         python3-pip \
+        python3-venv \
     && rm -rf /var/lib/apt/lists/*
 RUN python3 -m pip install -U platformio
 RUN curl -fLo /etc/udev/rules.d/99-platformio-udev.rules --create-dirs https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules
