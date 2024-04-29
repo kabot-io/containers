@@ -6,8 +6,6 @@ env:
 
 on:
   push:
-    branches:
-      - "main"
 
 jobs:
   prepare:
@@ -61,7 +59,7 @@ jobs:
         name: Build and push
         uses: docker/bake-action@v4
         with:
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' }}
           targets: ${{ matrix.target }}
           files: "kabot-containers.hcl"
 
@@ -70,6 +68,7 @@ jobs:
     needs:
       - prepare
       - build
+    if: ${{ github.ref == 'refs/heads/main' }}
     strategy:
       fail-fast: false
       matrix:

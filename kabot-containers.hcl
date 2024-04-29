@@ -1,5 +1,5 @@
 group "default" {
-    targets = ["ros-base", "ros-dev", "ros-desktop"]
+    targets = ["ros-base", "ros-dev", "ros-desktop", "ros-platformio"]
 }
 
 variable "TAG" {
@@ -51,5 +51,19 @@ target "ros-desktop" {
     platforms = ["linux/amd64"]
     contexts = {
         ros-dev = "target:ros-dev"
+    }
+}
+
+target "ros-platformio" {
+    dockerfile = "ros-platformio.Dockerfile"
+    tags = ["ghcr.io/kabot-io/ros-platformio:${TAG}"]
+    args = common_args
+
+    // cache-from = ["type=registry,ref=ghcr.io/kabot-io/ros-platformio:${TAG}"]
+    // cache-to = ["type=inline"]
+
+    platforms = ["linux/amd64"]
+    contexts = {
+        ros-desktop = "target:ros-desktop"
     }
 }
